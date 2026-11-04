@@ -50,6 +50,7 @@ Fix gaps before deploying. The user approved the spec, not the prompt wording, s
 
 Follow Phase 10B, preferring the FlowForge MCP tools (`flowforge_create_assistant`, `flowforge_update_assistant`, `flowforge_assistant_lifecycle`, `flowforge_run_test`) and the `flowforge` skill's rules over raw REST calls when the MCP is installed.
 
+- **Connectors first.** FlowForge has no built-in calendar, booking or texting, so every live booking or SMS integration in spec §9 needs a webhook endpoint the agent can call. Build and test those connectors (e.g. n8n workflows calling the booking system's sandbox and the SMS provider) before creating the assistant, each with a direct test request, so the webhook tools point at endpoints that already work. Accounts the user must create come from the spec's Open questions; walk them through it rather than creating accounts yourself.
 - Create the assistant from the generated config and capture its ID.
 - Upload and link the knowledge base.
 - **Phone number:** list existing numbers first. Buying a number spends money, so show the dry-run preview and get a yes before confirming. If the user doesn't want a number yet, say how to test from the FlowForge dashboard instead.

@@ -52,7 +52,11 @@ Three to five sentences: what the agent does, for whom, the problem it solves (f
 - Rules from the playbook the agent must always follow.
 - What the agent must never do (medical advice, guaranteeing results, quoting prices not in the knowledge base, …).
 - Escalation triggers and how to hand off.
-- Compliance notes (e.g. HIPAA / privacy for medical businesses; call-recording disclosure).
+- Compliance notes (e.g. HIPAA / privacy for medical businesses).
+- Always include these three, adapted to the business:
+  - **Recording disclosure** in the first message wherever the law requires consent from everyone on the call (e.g. California and other all-party-consent states), and as good practice elsewhere.
+  - **AI honesty:** if a caller asks whether they're talking to a real person, the agent says it is the business's AI assistant and offers a human.
+  - **No vendor names:** the agent never names the AI, voice or software providers behind it.
 
 ## 7. Integrations → T
 ### Integration: [category, e.g. Booking and practice management]
@@ -72,11 +76,15 @@ Three to five sentences: what the agent does, for whom, the problem it solves (f
 ## 8. Knowledge base
 What the agent needs to know, and where it comes from: services and prices, policies (deposit, cancellation, age, consultation), pre- and after-care, FAQs from the reviews, location, parking, hours.
 
+For a **generic demo**, prices, policies and staff are made up: set them at typical local levels, and label every price as a demo value in the knowledge base so nobody mistakes the demo for a real quote. For a **tailored demo**, use only what the business publishes, and list anything missing as an open question rather than guessing.
+
 ## 9. Demo plan
 | Integration | Live in demo? | How (real demo account / real demo calendar) | If not live: why, and what the agent says instead |
 |---|---|---|---|
 
 Nothing in the demo pretends to work. A capability that isn't live is either left out or clearly handled as "I'll have the team call you back to book."
+
+**FlowForge has no built-in calendar, booking or texting.** The agent reaches a booking system or SMS provider through webhook tools, and most booking APIs need a small connector in between that turns a simple tool call ("book Maya, Tuesday 3pm") into the vendor's request format: for example an n8n workflow or a small serverless function. Name the connector here, and list any account the user must create themselves (e.g. a free booking-system sandbox) in Open questions, since the build can't create accounts.
 
 ## 10. Configuration → Phase 7
 - **Model, voice, transcriber:** [preferences or "builder's default"]
