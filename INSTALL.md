@@ -11,6 +11,7 @@ What gets installed:
 | `flowforge-mcp` MCP server (48 tools, all 160 API endpoints) | `uv tool` dir, or `~/.flowforge-mcp/venv` | Claude Code, Codex, Claude Desktop |
 | `flowforge` skill (how to operate FlowForge safely) | `~/.claude/skills/flowforge`, `~/.agents/skills/flowforge` | Claude Code, Codex |
 | `goal-based-voice-agent` skill (design and deploy a voice agent) | `~/.claude/skills/goal-based-voice-agent`, `~/.agents/skills/goal-based-voice-agent` | Claude Code, Codex |
+| `agent-market-research` skill (research an industry, then spec a voice agent for it) | `~/.claude/skills/agent-market-research`, `~/.agents/skills/agent-market-research` | Claude Code, Codex |
 | `/ff-*` slash commands | `~/.claude/commands/ff-*.md` | Claude Code |
 | Server-name → org map | `~/.config/flowforge/servers.md` | the skill |
 
@@ -122,5 +123,6 @@ uv tool uninstall flowforge-mcp
 
 Then delete `~/.claude/skills/flowforge`, `~/.agents/skills/flowforge`,
 `~/.claude/skills/goal-based-voice-agent`, `~/.agents/skills/goal-based-voice-agent`,
-`~/.claude/commands/ff-*.md`, `~/.config/flowforge/` and `~/.flowforge-mcp/`, and
+`~/.claude/skills/agent-market-research`, `~/.agents/skills/agent-market-research`,
+`~/.config/agent-market-research/`, `~/.claude/commands/ff-*.md`, `~/.config/flowforge/` and `~/.flowforge-mcp/`, and
 remove the `flowforge` entry from Claude Desktop's `claude_desktop_config.json`.

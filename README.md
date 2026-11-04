@@ -34,7 +34,16 @@ Restart your agent afterwards.
   to write code against the REST API.
 - **`goal-based-voice-agent` skill** designs a voice agent from an idea, call
   script or SOP using the SCRIPT framework, then deploys it to FlowForge (or
-  VAPI): prompt, tools, voice and test plan.
+  VAPI): prompt, tools, voice and test plan. It can also build straight from an
+  approved agent spec.
+- **`agent-market-research` skill** guides you from an industry, a city and a job
+  (e.g. med spas, Los Angeles, receptionist) to a demo agent: it finds 3-4 real
+  example businesses, writes a dossier on each including review analysis, turns
+  the reviews into a playbook for the job, writes an agent spec with the apps that
+  industry actually uses, and hands it to `goal-based-voice-agent` to build and
+  test in FlowForge. Everything is saved as Markdown, one folder per industry and
+  city. Reads Google reviews in the browser for free, or through an optional
+  paid review service.
 - **Slash commands** for Claude Code: `/ff-call`, `/ff-batch`, `/ff-call-review`,
   `/ff-campaign`, `/ff-campaign-status`, `/ff-assistant`, `/ff-test`, `/ff-tool`,
   `/ff-usage`, `/ff-status`.
@@ -103,7 +112,7 @@ flowforge_mcp/
   server.py       # entry point (--check verifies the install)
   spec.py         # index over data/openapi.json (bundled API spec)
   tools/          # one module per resource group; _dispatch.py = confirm gate
-skills/          # agent skills: flowforge/, goal-based-voice-agent/
+skills/          # agent skills: flowforge/, goal-based-voice-agent/, agent-market-research/
 commands/         # Claude Code /ff-* slash commands
 install.sh        # installer (see INSTALL.md)
 ```
