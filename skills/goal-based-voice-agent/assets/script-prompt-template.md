@@ -27,6 +27,9 @@
 ##Language
 [Languages spoken, tone (formal/casual), regional nuances, vocabulary constraints, domain-specific terminology rules.]
 
+##Voice Realism
+[Paste block A from references/voice-realism.md, adapted to the persona. If the voice is Cartesia Sonic, follow it with block B (##Expressive Voice Controls). For any other voice, include no tags anywhere in the prompt.]
+
 ##Behavior Guidelines
 1. [Greeting and opening behavior]
 2. [Speaking pace and response length]

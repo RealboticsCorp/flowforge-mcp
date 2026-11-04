@@ -30,6 +30,7 @@ Three to five sentences: what the agent does, for whom, the problem it solves (f
 - **Name and persona:**
 - **Personality:** [3-5 traits, each tied to a praise theme]
 - **Voice:** [gender, age range, accent, pace, energy]
+- **Expressiveness:** [subtle / warm / lively; moments where warmth or humour fits, and moments where it never does, e.g. complaints. The builder adds emotion and laughter tags only if the voice is Cartesia Sonic.]
 - **Speech style:** [sample phrases from the playbook; words to avoid]
 
 ## 4. Role and responsibilities → R

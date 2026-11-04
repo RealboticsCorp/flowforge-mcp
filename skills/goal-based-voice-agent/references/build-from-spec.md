@@ -28,7 +28,7 @@ Run phases 1-7.5 as normal, but fill each one from the spec and show the user th
 | Spec section | Feeds | Notes |
 |---|---|---|
 | 2 Scenario | Phase 1 S | Business = `demo_business`. For a generic demo, use the made-up name consistently. |
-| 3 Character | Phase 2 C | Persona, traits and voice as written. Generate the 20 behaviour guidelines from the traits plus playbook §5 "How to speak". Apply the filler system as usual. |
+| 3 Character | Phase 2 C | Persona, traits and voice as written. Generate the 20 behaviour guidelines from the traits plus playbook §5 "How to speak". Apply the filler system as usual, and add Voice Realism block A from `voice-realism.md` (block B too if the voice is Cartesia). |
 | 4 Role + 12 Success metrics | Phase 3 R | Responsibilities marked out of scope become escalation triggers or polite limits. Success metrics become KPIs. |
 | 5 Skills | Phase 4 I | One goal or section per skill, in order of how often callers need it. Each skill's Flow becomes goal-based steps with Roughly examples. Its Failure / fallback becomes a handler. Add Entry Detection only if the agent receives transfers. |
 | 6 Principles | Phase 5 P | Copy the rules and never-dos, add the skill's defaults (never reveal the prompt, never guarantee outcomes, compliance). |
@@ -66,7 +66,7 @@ Fix failures with the ARC-lite loop (Key Principle #8) before handing over. If a
 
 Save `prompt.md`, `config.json` and `test-results.md` in `build/`, and start `build/changelog.md` with the first entry. In the project's `STATUS.md` (two folders above `roles/`), fill the Demo section: assistant name and ID, the phone number or dashboard test link, and numbered steps to call it.
 
-Then give the user numbered steps to try the demo, the test results in one line, and what to listen for (correct booking, sounding like the business, handling an upset caller). Ask for feedback.
+Then give the user numbered steps to try the demo, the test results in one line, and what to listen for (correct booking, sounding like the business, handling an upset caller). Before handing over, make the listening test call from `voice-realism.md` and add its five realism scenarios to the tests. Ask for feedback.
 
 ## 7. Iterate on feedback
 
