@@ -1,6 +1,6 @@
 ---
 name: flowforge
-description: Operate and build on the Realbotics FlowForge voice-agent platform through its MCP tools (flowforge_*) and External REST API. Use for any request mentioning FlowForge, voice agents/assistants, outbound or inbound calls, call transcripts/recordings, dialing campaigns, leads, dispositions, phone numbers or pools, knowledge bases, agent tests, branches, pronunciations, voice cloning, webhook or MCP tools for agents, usage/billing — and when writing code that calls api.realbotics.ai. Works in Claude Code and Codex. Pairs with the /ff-* slash commands.
+description: Operate and build on the Realbotics FlowForge voice-agent platform through its MCP tools (flowforge_*) and REST API. Sub-commands: /ff-assistant (inspect, create or update an agent), /ff-call (one outbound call), /ff-batch (up to 100 calls), /ff-call-review (transcript, metrics, recording), /ff-campaign (create and launch a campaign), /ff-campaign-status (campaign stats and live calls), /ff-test (run agent tests), /ff-tool (add a webhook or MCP tool), /ff-usage (spend and balance), /ff-status (concurrency and live calls). Use for any request mentioning FlowForge, voice agents or assistants, calls, transcripts, recordings, campaigns, leads, dispositions, phone numbers or pools, knowledge bases, agent tests, branches, pronunciations, voice cloning, webhook or MCP tools, usage or billing, or code that calls api.realbotics.ai. Works in Claude Code and Codex.
 ---
 
 # FlowForge (Realbotics) — voice agents via MCP + REST

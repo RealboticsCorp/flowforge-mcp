@@ -1,6 +1,6 @@
 ---
 name: goal-based-voice-agent
-description: This skill should be used when building, creating, or deploying an AI voice agent on VAPI or FlowForge, designing a phone agent using the SCRIPT framework, converting a call script into a voice agent, or when the user mentions VAPI assistant, FlowForge assistant, voice agent creation, AI caller, inbound/outbound call agent, or wants to go from idea to deployed voice agent. Also trigger when the user provides an existing prompt, call script, or SOP and wants to create a VAPI or FlowForge agent from it.
+description: This skill should be used when building, creating, or deploying an AI voice agent on VAPI or FlowForge, designing a phone agent using the SCRIPT framework, converting a call script into a voice agent, or when the user mentions VAPI assistant, FlowForge assistant, voice agent creation, AI caller, inbound/outbound call agent, or wants to go from idea to deployed voice agent. Also trigger when the user provides an existing prompt, call script, or SOP and wants to create a VAPI or FlowForge agent from it, or provides an approved agent spec (agent-spec.md, type voice-agent-spec, e.g. from agent-market-research) to build a demo from.
 ---
 
 # Voice Agent Builder (VAPI + FlowForge)
@@ -15,13 +15,16 @@ Run through phases 0-10 sequentially, asking about one SCRIPT section at a time.
 
 ### Phase 0: Kickoff
 
-Start by asking the user to describe the agent they want to build. Keep it open-ended:
+**If the input is an agent spec** (a Markdown file whose frontmatter has `type: voice-agent-spec`, usually handed over by the `agent-market-research` skill, or the user points at an `agent-spec.md`), load `references/build-from-spec.md` and follow it instead of this interview. The spec answers the Phase 0-7 questions, so skip them, and only ask about gaps or open questions in the spec.
+
+Otherwise, start by asking the user to describe the agent they want to build. Keep it open-ended:
 
 1. "Describe the voice agent you want to build -- what does it do, who does it talk to, and what's the goal?"
 2. "Do you have any supporting resources I should review? Documents, SOPs, call transcripts, knowledge articles, existing prompts, or URLs?"
 3. If resources are provided, read/fetch them to extract context for subsequent phases.
 4. Determine mode:
    - **Build from scratch** -- Continue through phases 1-7
+   - **Build from an approved agent spec** -- Load `references/build-from-spec.md`. Phases 1-7 are filled from the spec, then deploy (Phase 10) and test.
    - **Convert existing prompt** -- Load `references/conversion-guide.md` and apply the goal-based conversion methodology. **ALSO load `references/lossless-conversion-protocol.md`** (mandatory) and run Phase 0.5 before any rewriting. Then skip to Phase 7.
    - **Iterative update of a deployed agent** -- Load `references/lossless-conversion-protocol.md` (mandatory) and run Phase 0.5 before touching the prompt. Then jump to the relevant phase for the specific change.
    - **Clone with modifications** -- Same as conversion mode. Treat the source as an existing prompt + a deployed state to inventory.
@@ -418,6 +421,7 @@ If the FlowForge MCP server is installed (`flowforge_*` tools), use it for every
 
 | File | When to Load |
 |------|-------------|
+| `references/build-from-spec.md` | **MANDATORY when the input is an agent spec** (`type: voice-agent-spec`, e.g. from `agent-market-research`). Maps spec sections to SCRIPT phases, coverage check, FlowForge deploy, turning spec test scenarios into FlowForge tests, handover, and spec-first iteration. |
 | `references/script-framework-guide.md` | During phases 1-6 for detailed "What to Include" guidance, speech texture, and objection persistence |
 | `references/conversion-guide.md` | When converting an existing prompt (Phase 0 alternate path), during Phase 4 for goal-based methodology, beat-based intros, and entry detection |
 | `references/lossless-conversion-protocol.md` | **MANDATORY during Phase 0.5** for any conversion, iterative update, or clone-with-modifications. Protocol for inventorying source state, preserving essential functionality, diff-checking, and documenting intentional removals. Prevents silent drops of tools, branches, stakeholders, and signature phrases. |
