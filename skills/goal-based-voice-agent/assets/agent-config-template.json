@@ -1,0 +1,26 @@
+{
+  "name": "",
+  "firstMessage": "Hello, how can I help you today?",
+  "firstMessageMode": "assistant-speaks-first",
+  "model": {
+    "provider": "openai",
+    "model": "gpt-4o",
+    "messages": [
+      {
+        "role": "system",
+        "content": ""
+      }
+    ],
+    "toolIds": []
+  },
+  "voice": {
+    "provider": "vapi",
+    "voiceId": "Elliot"
+  },
+  "transcriber": {
+    "provider": "deepgram",
+    "model": "nova-3"
+  },
+  "backchannelingEnabled": true,
+  "backgroundSound": "off"
+}

@@ -1,0 +1,22 @@
+[project]
+name = "flowforge-mcp"
+version = "0.2.0"
+description = "MCP server for the FlowForge voice-agent platform (assistants, calls, campaigns, phone numbers, knowledge, tests)."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.2.0,<2",
+    "httpx>=0.27.0",
+    "pydantic>=2.6.0",
+]
+
+[project.scripts]
+flowforge-mcp = "flowforge_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["flowforge_mcp"]

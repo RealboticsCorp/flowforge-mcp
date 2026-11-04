@@ -1,0 +1,55 @@
+{
+  "squadName": "",
+  "members": [
+    {
+      "role": "",
+      "assistantId": "REPLACE_AFTER_DEPLOYMENT",
+      "assistantName": "",
+      "promptFile": "",
+      "description": ""
+    }
+  ],
+  "tools": {
+    "endCall": {
+      "id": "REPLACE_AFTER_DEPLOYMENT",
+      "type": "endCall",
+      "assignedTo": []
+    },
+    "handoff_to_agent_2": {
+      "id": "REPLACE_AFTER_DEPLOYMENT",
+      "type": "handoff",
+      "from": "",
+      "to": "",
+      "contextEngineeringPlan": { "type": "userAndAssistantMessages" },
+      "variableExtractionPlan": {
+        "schema": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    }
+  },
+  "sharedConfig": {
+    "_comment": "All squad members MUST use the same voice for seamless single-persona experience",
+    "voice": { "provider": "", "voiceId": "", "model": "" },
+    "llm": { "provider": "", "model": "" },
+    "transcriber": { "provider": "", "model": "" },
+    "backchannelingEnabled": true
+  },
+  "phoneNumber": {
+    "id": "REPLACE_AFTER_DEPLOYMENT",
+    "number": "",
+    "entryAssistant": "REPLACE_WITH_ENTRY_AGENT_ID"
+  },
+  "deploymentSequence": [
+    "1. Create endCall tool",
+    "2. Create all agents with prompts (capture IDs)",
+    "3. Create handoff tools with agent IDs and contextEngineeringPlan/variableExtractionPlan",
+    "4. Update each agent's model.toolIds with their assigned tools",
+    "5. Assign phone number to entry agent",
+    "6. Run test call through full flow",
+    "7. Set up scorecards tied to KPIs",
+    "8. Set up monitoring with default alerts"
+  ]
+}
