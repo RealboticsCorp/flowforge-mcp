@@ -27,17 +27,20 @@ Do not call the business, book, submit forms or create accounts. Reading public 
 
 ## Researcher subagent brief
 
-Spawn one per confirmed business with this brief, filling in the brackets. Give each subagent the full path of the templates and output files.
+Spawn one subagent per confirmed business, **all in one message so they run in parallel**, each with this brief and the brackets filled in. Each subagent owns its business end to end: reviews, research, review analysis and the finished dossier. Give each one the full paths of the templates and output files.
 
-> Research [business name], [address/website], a [industry] business in [city], for a full business dossier. We are designing an AI [role] for businesses like this one, so pay extra attention to anything about phones, booking, front desk, communication and customer experience.
+> Research [business name], [address, website, phone, Google rating and count], a [industry] business in [city], and write its complete dossier. We are designing an AI [role] for businesses like this one, so pay extra attention to anything about phones, booking, front desk, communication and customer experience. Other subagents are researching other businesses at the same time; touch only this business's files.
 >
-> Read `[skill-dir]/references/dossier-research.md` for where to find each field, and fill `[skill-dir]/assets/dossier-template.md` completely. Write the result to `[project]/research/dossiers/[slug].md`.
+> Read `[skill-dir]/references/dossier-research.md` for where to find each field, and fill `[skill-dir]/assets/dossier-template.md` completely, section 7 included. Write it to `[project]/research/dossiers/[slug].md`. Industry context: `[project]/research/tech-stack.md` (may still be in progress).
 >
-> Reviews: [EITHER "Collect Google reviews in the browser following [skill-dir]/references/review-collection.md § Browser method" OR "Google reviews are already in [project]/research/reviews/[slug].md; use them"]. Also skim Yelp and [industry review site] for the business and add notable reviews to the same reviews file under a heading per site.
+> 1. **Reviews.** [Browser: "Open your own browser tab with the new-tab tool and pass its tab ID on every browser call; never navigate a tab you didn't open. Collect Google reviews following `[skill-dir]/references/review-collection.md` § Browser method." OR Outscraper: "Collect Google reviews with `[skill-dir]/scripts/fetch_reviews_outscraper.py` following `review-collection.md` § Collecting with Outscraper."] Write them to `[project]/research/reviews/[slug].md`. Then search Yelp, [industry review site, e.g. RealSelf] and other review sites and append notable reviews under a heading per site, especially complaints and anything about phones, booking or reception.
+> 2. **Research** every other dossier section from the sources in the table above. Do the web research while slow browser steps are loading; don't wait idle.
+> 3. **Review analysis (section 7).** Read every review you collected. Cluster into themes: up to 10 praise themes and up to 5 criticism themes, ranked by share of the sample (N of total and %), with 1-3 short real quotes each (★ and first name or initial). Analyse every review of 3★ or below closely, including any owner reply and what it shows about how complaints are handled. If low-rated reviews are scarce, say so plainly and mine mild friction inside positive reviews ("a bit of a wait", "hard to get an appointment"), labelled as such. Never invent complaints. List every front-desk, phone, booking or follow-up mention. Copy Google's topic chips at the top, and end with a "Sample note:" on sample size and limits.
+> 4. **Section 10 (Implications)** last, built on sections 4, 7 and 8.
 >
-> Rules: cite a source URL for every fact. Tag each claim [verified] (you saw it at the source) or [inferred] (reasoned from evidence, say from what). When a field isn't found, write "Not found (searched: …)". Record people only in their business role; no home addresses, personal phone numbers or family details. Don't contact the business or submit any form.
+> Rules: cite a source URL for every fact. Tag each claim [verified] (you saw it at the source) or [inferred] (reasoned from evidence, say from what). When a field isn't found, write "Not found (searched: …)". Record people only in their business role, by first name or initial for reviewers; no home addresses, personal phone numbers or family details. Don't contact the business, book, sign in, or submit any form.
 >
-> Return a 5-line summary: rating and count, top 3 praises, top 3 complaints, booking software seen, anything surprising.
+> Return a 5-line summary: rating and review sample, top 3 praises, top complaints (or "none found"), booking and phone setup, anything surprising.
 
 ## Tech stack research
 

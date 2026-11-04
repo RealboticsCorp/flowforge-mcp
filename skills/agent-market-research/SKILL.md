@@ -87,7 +87,7 @@ Show the candidates as a table: name, neighbourhood, website, Google rating and 
 
 Ask once per user, not per project, then remember the answer as `reviews=` in the config file:
 
-> I'll read each business's Google reviews myself in the browser. That's free, just slower (a few minutes per business). If you plan to research many industries, a paid review service is faster and more complete. It's about $3 per 1,000 reviews after 500 free a month, and I'll walk you through setting it up step by step. Which would you like?
+> I'll read each business's Google reviews myself in the browser. That's free, just slower (a few minutes per business). If you plan to research many industries, a paid review service is faster and more complete. It costs about 3 US dollars per 1,000 reviews after 500 free a month, and I'll walk you through setting it up step by step. Which would you like?
 
 - **Browser (default and recommended for most):** read `references/review-collection.md` § Browser method.
 - **Paid service:** read `references/review-collection.md` § Outscraper setup and walk the user through it exactly as written. Test it on one confirmed business before relying on it. If setup stalls, fall back to the browser without fuss.
@@ -96,9 +96,15 @@ Google is the primary source either way; Yelp and industry review sites (e.g. Re
 
 ## Stage 3: Dossiers
 
-Read `references/dossier-research.md` for sources and the researcher brief. Spawn one research subagent per confirmed business, all in the same turn, so they run in parallel and their page dumps stay out of the main context. Each writes `research/dossiers/<business>.md` from `assets/dossier-template.md` and `research/reviews/<business>.md`.
+**One subagent per business, all running in parallel.** Each confirmed business gets its own research subagent that owns everything about that business from start to finish: collecting its reviews, researching the dossier, analysing the reviews, and writing the finished dossier. Spawn all of them in a single message so they run at the same time; never research businesses one after another, and never split one business's work across a serial queue. This is the slowest stage, and running in parallel turns 4 × the work into roughly 1 × the wait. It also keeps each business's page dumps out of the main context.
 
-While they run, research the industry tech stack yourself (`references/dossier-research.md` § Tech stack) and write `research/tech-stack.md`. The spec's integration rankings depend on it.
+Read `references/dossier-research.md` for the subagent brief and fill it in once per business. Each subagent writes:
+- `research/reviews/<business>.md`: the raw reviews (Google first, then other sites);
+- `research/dossiers/<business>.md`: the full dossier from `assets/dossier-template.md`, including section 7, Review analysis.
+
+**Browser access for parallel review collection.** Each subagent opens its **own browser tab** (the browser's new-tab tool) and passes that tab's ID on every browser call, so several subagents can read Google Maps at once without clicking on each other's pages. If the browser tools can't open separate tabs, or parallel tabs stall, use the paid review service if it's set up; otherwise let the subagents do all their non-browser research in parallel and collect reviews in their tabs one at a time. Never hold back the other research while waiting for reviews.
+
+While they run, research the industry tech stack yourself (`references/dossier-research.md` § Tech stack) and write `research/tech-stack.md`. The spec's integration rankings depend on it. Give the user a one-line update as each business's subagent finishes.
 
 When they finish, open each dossier and check it against the template: every section filled or explicitly marked "not found (searched: …)", sources cited, every claim tagged **[verified]** (seen at a source) or **[inferred]** (reasoned from evidence). Send a subagent back for anything thin rather than papering over it. Give the user a 4-6 line summary per business and the folder path, then go straight into Stage 4.
 

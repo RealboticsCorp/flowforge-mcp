@@ -28,7 +28,7 @@ If the script returns `loaded: 0`, Google has likely changed its page; fall back
 
 Google may show a consent or sign-in prompt. Decline cookies that aren't essential and carry on without signing in. If the panel stops loading or Google blocks the session, stop, use what you have, note the shortfall in the dossier, and offer the paid service.
 
-Doing this in each research subagent works, but several subagents driving one shared browser pane collide. When the browser is a single shared pane, collect reviews for the businesses one after another in the main session, or in one dedicated subagent, before or alongside the dossier subagents.
+Each business's research subagent collects its own reviews in parallel with the others (see SKILL.md Stage 3). To stop subagents clicking on each other's pages, each one opens its own browser tab first and passes that tab's ID on every browser call. Never navigate a tab you didn't open.
 
 ## Outscraper setup (paid option)
 

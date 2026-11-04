@@ -1,8 +1,9 @@
 // Google Maps review extractor, run inside an open place page (browser JavaScript tool).
 // Set SORT and TARGET on the first two lines, paste the whole file as the script, and it
 // returns JSON: { sort, loaded, topics, reviews: [{ stars, date, author, text, ownerReply }] }.
-// Tested 2026-11-04. Google's class names change; if `loaded` is 0, read the reviews with
-// the page-text tool instead and tell the user the extractor needs updating.
+// Tested 2026-11-04. If `loaded` is far below TARGET and the listing has more reviews, run it
+// again. Google's class names change; if `loaded` stays 0, read the reviews with the
+// page-text tool instead and tell the user the extractor needs updating.
 const SORT = "Newest";      // "Most relevant" | "Newest" | "Highest rating" | "Lowest rating"
 const TARGET = 50;          // stop once this many reviews are loaded
 
@@ -26,8 +27,12 @@ const scrollable = (el) => el && el.scrollHeight > el.clientHeight + 50 && /(aut
 let panel = sortButton;
 while (panel && !scrollable(panel)) panel = panel.parentElement;
 
+// The first run on a freshly opened page often stalls while the panel is still loading,
+// so wait for the first review cards before scrolling, and allow a few slow loads.
+for (let i = 0; i < 10 && panel && cards().length === 0; i++) { panel.scrollTop = panel.scrollHeight; await sleep(1000); }
+
 let stalled = 0;
-while (panel && cards().length < TARGET && stalled < 4) {
+while (panel && cards().length < TARGET && stalled < 6) {
   const before = cards().length;
   panel.scrollTop = panel.scrollHeight;
   await sleep(1500);
