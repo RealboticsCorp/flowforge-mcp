@@ -85,8 +85,9 @@ In Claude Code, `/ff-status` shows concurrency and live calls.
 git -C ~/.flowforge-mcp/src pull --ff-only && ~/.flowforge-mcp/src/install.sh --update
 ```
 
-`--update` reinstalls the server, skills and commands and leaves keys and client
-registrations alone. Restart the client afterwards.
+`--update` reinstalls the server, the `flowforge` skill and the slash commands.
+It leaves keys, client registrations and the `goal-based-voice-agent` skill
+(installed on first install only) alone. Restart the client afterwards.
 
 ## Other clients or manual setup
 

@@ -31,8 +31,9 @@ Usage: ./install.sh [options]
                      found on this machine).
   --server-only      Register the server only; skip the skills and slash commands.
   --replace          Replace an existing server entry with the same name.
-  --update           Reinstall the package, skills and commands; leave client
-                     registrations and keys untouched.
+  --update           Reinstall the package, the flowforge skill and commands;
+                     leave keys, client registrations and goal-based-voice-agent
+                     untouched.
   -h, --help         Show this help.
 
 Environment: FLOWFORGE_API_KEY (required unless --update; prompted for when
@@ -107,11 +108,18 @@ backup_if_different() {  # $1 = existing path, $2 = new source, $3 = backup labe
   fi
 }
 
+# Skills copied on a first install only; --update leaves them as the user has them.
+FIRST_INSTALL_ONLY_SKILLS=" goal-based-voice-agent "
+
 install_skill() {
   local src name root dest names=()
   for src in "$REPO_DIR"/skills/*/; do
     src="${src%/}"
     name="$(basename "$src")"
+    if [ "$MODE" = "update" ] && [[ "$FIRST_INSTALL_ONLY_SKILLS" == *" $name "* ]]; then
+      say "Skipped $name (installed on first install only; --update leaves it alone)"
+      continue
+    fi
     names+=("$name")
     for root in "$HOME/.claude/skills" "$HOME/.agents/skills"; do   # Claude Code, Codex
       dest="$root/$name"
